@@ -5,7 +5,7 @@ module.exports = {
     create: async function(req,res) {
         try{
             const newList = await db.List.create({
-                title = req.body.title
+                title: req.body.title
             })
         } catch(err) {
             console.log(err)

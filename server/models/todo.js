@@ -21,6 +21,7 @@ Todo.init(
         },
         list_id: {
           type: DataTypes.INTEGER,
+          allowNull: false,
           references: {
             model: 'list',
             key: 'id'
@@ -28,6 +29,7 @@ Todo.init(
         },
         isComplete: {
             type: DataTypes.BOOLEAN,
+            allowNull: false,
             defaultValue: false,
         }
         },

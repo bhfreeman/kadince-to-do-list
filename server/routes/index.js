@@ -1,10 +1,5 @@
 const router = require("express").Router();
-const listRoutes = require("./list");
-const todoRoutes = require('./todo');
-
-router.use("/list", listRoutes);
-router.use("/todo", todoRoutes);
-
+const apiRoutes = require('./api')
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
