@@ -6,7 +6,7 @@ function AddNewTodo() {
     return (
         <>
             <button>Add New To-Do</button>
-            <div className={isActive ? "hidden" : "block"}>
+            <div className={isActive ?  "block" : "hidden"}>
                 <textarea></textarea>
             </div>
         </>

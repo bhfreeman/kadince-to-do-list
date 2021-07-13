@@ -8,14 +8,7 @@ function List({todos}) {
     return (
         <>
         <AddNewTodo />
-        {todos.map((todo) => {
-          return  <ToDo
-          id={todo.id}
-          title={todo.title}
-          text={todo.text}
-          isComplete={todo.isComplete}
-          />
-        })}
+        {/* filter the list */}
         </>
     )
 }
