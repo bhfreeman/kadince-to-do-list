@@ -11,6 +11,17 @@ module.exports = {
             console.log(err)
         }
     },
+    delete: async function(req, res){
+      try{
+          db.List.destroy({
+              where: {
+                  id: req.body.id
+              }
+          })
+      }catch(err) {
+          console.log(err)
+      }
+    },
   findAll: async function (req, res) {
      await db.List.findAll({})
   }

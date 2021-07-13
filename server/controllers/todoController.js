@@ -23,12 +23,25 @@ module.exports = {
         list_id: req.body.list_id
       },{
         where: {
-          id: req.body.id
+          id: req.params.id
         }
       })
     } catch(err) {
       console.log(err)
     }
+  },
+  delete:async function(req,res){
+    await db.Todo.destroy({
+      where: {
+        id: req.body.id
+      }
+    })
+  },
+  complete: async function(req,res){
+    await db.Todo.update({isComplete: true}, {
+      where: {
+        id: req.body.id
+      }
+    })
   }
-
 };
