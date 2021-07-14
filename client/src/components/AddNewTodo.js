@@ -5,7 +5,7 @@ function AddNewTodo() {
     const [isActive, setIsActive] = useState(false)
     return (
         <>
-            <button>Add New To-Do</button>
+            <button onClick={setIsActive}>Add New To-Do</button>
             <div className={isActive ?  "block" : "hidden"}>
                 <textarea></textarea>
             </div>

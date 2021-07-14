@@ -36,7 +36,7 @@ module.exports = {
   delete:async function(req,res){
     await db.Todo.destroy({
       where: {
-        id: req.body.id
+        id: req.params.id
       }
     })
   },
