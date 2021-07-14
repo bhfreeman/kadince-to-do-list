@@ -2,7 +2,8 @@ const db = require("../models");
 
 module.exports = {
   findAll: async function (req, res) {
-    await db.Todo.findAll({})
+    const todos = await db.Todo.findAll({})
+    res.send(todos)
  },
   create: async function(req,res) {
     try{
@@ -11,6 +12,7 @@ module.exports = {
         text: req.body.text,
         list_id: req.body.list_id
       })
+      res.send(`new todo created: ${newTodo}`)
     } catch(err) {
       console.log(err)
     }
@@ -26,6 +28,7 @@ module.exports = {
           id: req.params.id
         }
       })
+      res.send(`edited todo: ${editedTodo}`)
     } catch(err) {
       console.log(err)
     }
@@ -40,8 +43,9 @@ module.exports = {
   complete: async function(req,res){
     await db.Todo.update({isComplete: true}, {
       where: {
-        id: req.body.id
+        id: req.params.id
       }
     })
+    res.send('todo has been completed!')
   }
 };

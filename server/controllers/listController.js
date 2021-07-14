@@ -7,22 +7,29 @@ module.exports = {
             const newList = await db.List.create({
                 title: req.body.title
             })
+            res.send(`new list created with title of ${req.body.title}`)
         } catch(err) {
             console.log(err)
         }
     },
     delete: async function(req, res){
       try{
-          db.List.destroy({
+          await db.List.destroy({
               where: {
-                  id: req.body.id
+                  id: req.params.id
               }
           })
+          res.send("list destroyed")
       }catch(err) {
           console.log(err)
       }
     },
   findAll: async function (req, res) {
-     await db.List.findAll({})
+      try{
+         const lists = await db.List.findAll({include:{all: true}})
+         res.send(lists)
+      } catch(err){
+        console.log(err)
+    }
   }
 };
