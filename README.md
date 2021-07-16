@@ -6,22 +6,22 @@ Todo component
 - edit todo function
 - delete todo function
 - complete todo function
+- styling
 
 AddNewTodo Component
 - todo form
 - create todo function
+- styling
 
 AddNewList component
 - styling
-- submit new list function
 
 List Component
+- filtering
 - styling
 
 ListPage
 - styling
-- add header
-- add create list component
 
 
 

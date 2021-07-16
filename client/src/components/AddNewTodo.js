@@ -1,22 +1,32 @@
 import React, { useState } from "react";
 
-function AddNewTodo() {
+import API from '../utils/API'
+
+function AddNewTodo({list_id, setLists}) {
   const [isActive, setIsActive] = useState(false);
   const [newTodo, setNewTodo] = useState({
       title: '',
-      text: ''
+      text: '',
+      list_id: list_id
   })
 
-  function handleSubmit(){
-
+  async function handleSubmit(){
+      console.log(newTodo)
+      if(newTodo.title !== '' && newTodo.text !== ''){
+          setIsActive(!isActive)
+          await API.createTodo({title: newTodo.title, text: newTodo.text, list_id: list_id})
+          const response = await API.getLists();
+        setLists(response.data)
+      }
+      else window.alert("Both the title and description are needed to create a new to-do!")
   }
 
-  function toggleAddNew() {
-      setIsActive(!isActive)
-  }
+//   function toggleAddNew() {
+//       setIsActive(!isActive)
+//   }
   return (
     <>
-      <button onClick={toggleAddNew}>
+      <button onClick={()=> setIsActive(!isActive)}>
         <svg
           className="w-6 h-6"
           fill="none"
@@ -34,9 +44,9 @@ function AddNewTodo() {
       </button>
       <div className={isActive ? "block" : "hidden"}>
           <label htmlFor="title" >Title</label>
-          <input id="title" type="text" />
+          <input id="title" type="text" onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} />
           <label htmlFor="description_text">Description</label>
-        <textarea id="description_text"></textarea>
+        <textarea id="description_text" onChange={(e) => setNewTodo({...newTodo, text: e.target.value})}></textarea>
         <button onClick={handleSubmit}>Submit</button>
       </div>
     </>

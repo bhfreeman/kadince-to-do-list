@@ -21,14 +21,19 @@ function ListsPage() {
   }, []);
 
   return (<>
+  <header className="my-10">
+      <h1 className="font-black text-6xl text-center">To-Do Lists</h1>
+      <p className="text-center">Get organized. Create a list and add to-do's to that list.</p>
+  </header>
   <AddNewList lists={lists} setLists={setLists} />
     {lists.length > 0 && <div className="flex flex-col md:flex-row">
       {lists.map((list) => (
         <List
           key={list.id}
-          id={list.id}
+          list_id={list.id}
           title={list.title}
           todos={list.todos}
+          setLists={setLists}
         />
       ))}
     </div>}
