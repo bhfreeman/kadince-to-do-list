@@ -24,6 +24,9 @@ const API = {
     },
     completeTodo: function(id) {
         return axios.put( `/api/todo/complete/${id}`)
+    },
+    undoComplete: function(id) {
+        return axios.put( `/api/todo/undo/${id}`)
     }
   };
 

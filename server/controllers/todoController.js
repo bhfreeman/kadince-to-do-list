@@ -48,5 +48,13 @@ module.exports = {
       }
     })
     res.send('todo has been completed!')
+  },
+  undoComplete: async function(req,res){
+    await db.Todo.update({isComplete: false}, {
+      where: {
+        id: req.params.id
+      }
+    })
+    res.send('complete todo has been undone!')
   }
 };

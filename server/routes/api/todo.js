@@ -22,4 +22,8 @@ router
     .route('/complete/:id')
     .put(todoController.complete)
 
+    router
+    .route('/undo/:id')
+    .put(todoController.undoComplete)
+
 module.exports = router;

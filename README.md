@@ -4,8 +4,6 @@ Still to do:
 
 Todo component
 - edit todo function
-- delete todo function
-- complete todo function
 - styling
 
 AddNewTodo Component

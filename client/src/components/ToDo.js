@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import API from "../utils/API";
 
-function ToDo({ title, text, isComplete, id, setLists }) {
+function ToDo({ title, text, isComplete, id, setLists, list_id }) {
   const buttonStyle = "bg-purple-400 rounded-md m-1 p-1 min-w-24";
 
   const [todo, setTodo] = useState({
     title: title,
     text: text,
     id: id,
+    list_id: list_id,
     isComplete: isComplete
   });
   const [toggleEdit, setToggleEdit] = useState(false);
@@ -18,8 +19,15 @@ function ToDo({ title, text, isComplete, id, setLists }) {
     setLists(response.data)
   }
 
-  function handleComplete() {
-      setTodo({...todo, isComplete: !isComplete})
+  async function handleComplete() {
+    //   setTodo({...todo, isComplete: !isComplete})
+    if(!isComplete) {
+        await API.completeTodo(id)
+    } else {
+        await API.undoComplete(id)
+    }
+    const response = await API.getLists();
+    setLists(response.data)
   }
 
   function handleEditToggle() {
