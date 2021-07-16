@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import API from "../utils/API";
 
-function ToDo({ title, text, isComplete, id }) {
+function ToDo({ title, text, isComplete, id, setLists }) {
   const buttonStyle = "bg-purple-400 rounded-md m-1 p-1 min-w-24";
 
   const [todo, setTodo] = useState({
@@ -12,11 +12,11 @@ function ToDo({ title, text, isComplete, id }) {
   });
   const [toggleEdit, setToggleEdit] = useState(false);
 
-  async function deleteTodo(id) {
-    // await API.deleteTodo(id)
+  async function deleteTodo() {
+    await API.deleteTodo(todo.id)
+    const response = await API.getLists();
+    setLists(response.data)
   }
-
-  function editTodo(todo) {}
 
   function handleComplete() {
       setTodo({...todo, isComplete: !isComplete})
@@ -26,7 +26,7 @@ function ToDo({ title, text, isComplete, id }) {
     setToggleEdit(!toggleEdit);
   }
 
-  function handleSaveEdit() {
+  async function handleSaveEdit() {
     setToggleEdit(!toggleEdit);
   }
 
@@ -45,7 +45,7 @@ function ToDo({ title, text, isComplete, id }) {
           <button className={buttonStyle} onClick={handleEditToggle}>
             Edit
           </button>
-          <button className={buttonStyle} onClick={() => deleteTodo(id)}>
+          <button className={buttonStyle} onClick={deleteTodo}>
             Delete
           </button>
           <button className={buttonStyle} onClick={handleComplete}>

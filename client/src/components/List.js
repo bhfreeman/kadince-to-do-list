@@ -16,7 +16,7 @@ function List({ title, todos, list_id, setLists }) {
           title={todo.title}
           text={todo.text}
           isComplete={todo.isComplete}
-          
+          setLists={setLists}
         />
       ))}
     </div>

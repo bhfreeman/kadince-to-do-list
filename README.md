@@ -9,8 +9,6 @@ Todo component
 - styling
 
 AddNewTodo Component
-- todo form
-- create todo function
 - styling
 
 AddNewList component

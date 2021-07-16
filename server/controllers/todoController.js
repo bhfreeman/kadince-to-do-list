@@ -39,6 +39,7 @@ module.exports = {
         id: req.params.id
       }
     })
+    res.send('todo deleted')
   },
   complete: async function(req,res){
     await db.Todo.update({isComplete: true}, {
