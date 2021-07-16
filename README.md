@@ -3,7 +3,6 @@
 Still to do:
 
 Todo component
-- edit todo function
 - styling
 
 AddNewTodo Component

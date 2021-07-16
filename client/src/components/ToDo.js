@@ -35,7 +35,15 @@ function ToDo({ title, text, isComplete, id, setLists, list_id }) {
   }
 
   async function handleSaveEdit() {
-    setToggleEdit(!toggleEdit);
+      try{
+          await API.updateTodo(todo)
+        setToggleEdit(!toggleEdit);
+        const response = await API.getLists();
+        setLists(response.data)
+      } catch(err){
+          console.log(err)
+      }
+    
   }
 
   return (
@@ -64,9 +72,9 @@ function ToDo({ title, text, isComplete, id, setLists, list_id }) {
       {toggleEdit && (
         <div>
           <label>Title</label>
-          <input type="text" value={todo.title}></input>
+          <input type="text" onChange={(e) => setTodo({...todo, title: e.target.value})}></input>
           <label>Description:</label>
-          <textarea value={todo.text} ></textarea>
+          <textarea onChange={(e) => setTodo({...todo, text: e.target.value})} ></textarea>
           <button className={buttonStyle} onClick={handleSaveEdit}>
             Save Edit
           </button>
