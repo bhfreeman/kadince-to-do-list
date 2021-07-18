@@ -41,12 +41,12 @@ function AddNewTodo({list_id, setLists}) {
             d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-      <div className={isActive ? "block" : "hidden"}>
-          <label htmlFor="title" >Title</label>
-          <input id="title" type="text" onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} />
-          <label htmlFor="description_text">Description</label>
-        <textarea id="description_text" onChange={(e) => setNewTodo({...newTodo, text: e.target.value})}></textarea>
-        <button onClick={handleSubmit}>Submit</button>
+      <div className={isActive ? "absolute mt-6 z-10 bg-white border-2 border-black  grid grid-flow-row right-0" : "hidden"}>
+          <label className="text-center" htmlFor="title" >Title</label>
+          <input className="rounded-lg border-2 border-gray-300" id="title" type="text" onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} />
+          <label className="text-center" htmlFor="description_text">Description</label>
+        <textarea className="rounded-lg border-2 border-gray-300" id="description_text" onChange={(e) => setNewTodo({...newTodo, text: e.target.value})}></textarea>
+        <button className="bg-purple-400 rounded-md m-1 p-1 min-w-24" onClick={handleSubmit}>Submit New To-Do</button>
       </div>
     </>
   );

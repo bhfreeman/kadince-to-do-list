@@ -16,12 +16,12 @@ function List({ title, todos, list_id, setLists }) {
   }, [todos]);
 
   return (
-    <div className="flex flex-col items-center border-black border-2 m-5 p-2 md:max-w-md">
-      <div className="grid grid-flow-col w-full ">
-        <h1 className="text-2xl text-center font-bold justify-self-start">
+    <div className="flex flex-col items-center border-black border-2 rounded-xl m-5 md:max-w-md">
+      <div className="grid grid-flow-col w-full pt-2 ">
+        <h1 className="text-2xl text-center font-bold justify-self-start pl-3">
           {title}
         </h1>
-        <div className="justify-self-end grid grid-flow-col relative">
+        <div className="justify-self-end grid grid-flow-col relative pr-3">
           <AddNewTodo list_id={list_id} setLists={setLists} />
           <ListFilter
             setFilteredList={setFilteredList}
