@@ -4,6 +4,8 @@ Still to do:
 
 Todo component
 - styling
+- on click show description, date due?, date created, etc
+- on hover add tooltips
 
 AddNewTodo Component
 - styling
@@ -19,7 +21,10 @@ ListPage
 - styling
 
 
-
+Potential Extra functionality:
+- due dates
+- filter by date created, date due, etc
+- 
 
 
     - View a list of to-do items with the ability to filter the list by pending, complete, and all to-dos

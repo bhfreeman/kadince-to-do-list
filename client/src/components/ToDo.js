@@ -9,25 +9,26 @@ function ToDo({ title, text, isComplete, id, setLists, list_id }) {
     text: text,
     id: id,
     list_id: list_id,
-    isComplete: isComplete
+    isComplete: isComplete,
   });
   const [toggleEdit, setToggleEdit] = useState(false);
+  const [toggleTodoBody, setToggleTodoBody] = useState(false);
 
   async function deleteTodo() {
-    await API.deleteTodo(todo.id)
+    await API.deleteTodo(todo.id);
     const response = await API.getLists();
-    setLists(response.data)
+    setLists(response.data);
   }
 
   async function handleComplete() {
     //   setTodo({...todo, isComplete: !isComplete})
-    if(!isComplete) {
-        await API.completeTodo(id)
+    if (!isComplete) {
+      await API.completeTodo(id);
     } else {
-        await API.undoComplete(id)
+      await API.undoComplete(id);
     }
     const response = await API.getLists();
-    setLists(response.data)
+    setLists(response.data);
   }
 
   function handleEditToggle() {
@@ -35,15 +36,14 @@ function ToDo({ title, text, isComplete, id, setLists, list_id }) {
   }
 
   async function handleSaveEdit() {
-      try{
-          await API.updateTodo(todo)
-        setToggleEdit(!toggleEdit);
-        const response = await API.getLists();
-        setLists(response.data)
-      } catch(err){
-          console.log(err)
-      }
-    
+    try {
+      await API.updateTodo(todo);
+      setToggleEdit(!toggleEdit);
+      const response = await API.getLists();
+      setLists(response.data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -56,34 +56,46 @@ function ToDo({ title, text, isComplete, id, setLists, list_id }) {
     >
       {!toggleEdit && (
         <div>
-          <h1 className="text-center">ToDo: {title}</h1>
-          {text && <p className="text-center">Description: {text}</p>}
-          <button className={buttonStyle} onClick={handleEditToggle}>
-            Edit
-          </button>
-          <button className={buttonStyle} onClick={deleteTodo}>
-            Delete
-          </button>
-          <button className={buttonStyle} onClick={handleComplete}>
-            {isComplete ? "Undo Complete" : "Complete"}
-          </button>
+          <div className="grid grid-flow-col">
+              {isComplete ? <svg onClick={handleComplete} className="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> : <svg onClick={handleComplete} className="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+            <h1
+              onClick={() => setToggleTodoBody(!toggleTodoBody)}
+              className="cursor-pointer"
+            >
+              {title}
+            </h1>
+          </div>
+          {toggleTodoBody && (
+            <div>
+              {text && <p className="text-center">Description: {text}</p>}
+              <button className={buttonStyle} onClick={handleEditToggle}>
+                Edit
+              </button>
+              <button className={buttonStyle} onClick={deleteTodo}>
+                Delete
+              </button>
+            </div>
+          )}
         </div>
       )}
       {toggleEdit && (
         <div>
           <label>Title</label>
-          <input type="text" onChange={(e) => setTodo({...todo, title: e.target.value})}></input>
+          <input
+            type="text"
+            value={todo.title}
+            onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+          ></input>
           <label>Description:</label>
-          <textarea onChange={(e) => setTodo({...todo, text: e.target.value})} ></textarea>
+          <textarea
+            value={todo.text}
+            onChange={(e) => setTodo({ ...todo, text: e.target.value })}
+          ></textarea>
           <button className={buttonStyle} onClick={handleSaveEdit}>
             Save Edit
           </button>
         </div>
       )}
-      {/* todo text */}
-      {/* todo title? */}
-      {/* edit and delete buttons */}
-      {/* complete todo toggle */}
     </div>
   );
 }
