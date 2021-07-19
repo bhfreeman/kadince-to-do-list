@@ -17,6 +17,7 @@ function AddNewTodo({list_id, setLists}) {
           await API.createTodo({title: newTodo.title, text: newTodo.text, list_id: list_id})
           const response = await API.getLists();
         setLists(response.data)
+        setNewTodo({title:'',text: '', list_id: list_id})
       }
       else window.alert("Both the title and description are needed to create a new to-do!")
   }
@@ -43,9 +44,9 @@ function AddNewTodo({list_id, setLists}) {
         </svg>
       <div className={isActive ? "absolute mt-6 z-10 bg-white border-2 border-black  grid grid-flow-row right-0" : "hidden"}>
           <label className="text-center" htmlFor="title" >Title</label>
-          <input className="rounded-lg border-2 border-gray-300" id="title" type="text" onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} />
+          <input className="rounded-lg border-2 border-gray-300" id="title" type="text" value={newTodo.title} onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} />
           <label className="text-center" htmlFor="description_text">Description</label>
-        <textarea className="rounded-lg border-2 border-gray-300" id="description_text" onChange={(e) => setNewTodo({...newTodo, text: e.target.value})}></textarea>
+        <textarea className="rounded-lg border-2 border-gray-300" id="description_text" value={newTodo.text} onChange={(e) => setNewTodo({...newTodo, text: e.target.value})}></textarea>
         <button className="bg-purple-400 rounded-md m-1 p-1 min-w-24" onClick={handleSubmit}>Submit New To-Do</button>
       </div>
     </>
