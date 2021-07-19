@@ -16,8 +16,8 @@ function List({ title, todos, list_id, setLists }) {
   }, [todos]);
 
   return (
-    <div className="flex flex-col items-center border-black border-2 rounded-xl m-5 md:max-w-md">
-      <div className="grid grid-flow-col w-full pt-2 ">
+    <div className="flex flex-col items-center border-black border-2 rounded-xl m-5 md:max-w-md w-72 shadow-xl ">
+      <div className="grid grid-flow-col w-full pt-2 mb-2 bg-purple-200 rounded-t-lg">
         <h1 className="text-2xl text-center font-bold justify-self-start pl-3">
           {title}
         </h1>

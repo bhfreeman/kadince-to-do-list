@@ -14,11 +14,11 @@ function AddNewList({lists, setLists}) {
 
     return (
         <div>
-            {!toggleCreate && <button onClick={()=> setToggleCreate(!toggleCreate)}>Add New List</button>}
-            <div className={toggleCreate ? "w-40 h-24 border-2" : "hidden"} >
-                <label htmlFor="title">List Title: </label>
-                <input type="text" placeholder="ToDo List Title" onChange={(e)=> setTitle(e.target.value)}></input>
-                <button onClick={handleListCreate} >Create List</button>
+            {!toggleCreate && <button className="font-bold ml-10" onClick={()=> setToggleCreate(!toggleCreate)}>Add New List</button>}
+            <div className={toggleCreate ? "w-64 h-24 ml-10 border-2 border-black rounded-xl" : "hidden"} >
+                <label className="font-bold" htmlFor="title">List Title: </label>
+                <input className="font-semibold max-w-full" type="text" placeholder="To-Do List Title" onChange={(e)=> setTitle(e.target.value)}></input>
+                <button className="bg-purple-400 rounded-md m-1 p-1 min-w-24" onClick={handleListCreate} >Create List</button>
             </div>
         </div>
     )
